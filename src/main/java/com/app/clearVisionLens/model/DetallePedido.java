@@ -1,12 +1,28 @@
 package com.app.clearVisionLens.model;
 
-public class DetallePedido {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "detalles")
+public class DetallePedido {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	private double cantidad;
 	private double precio;
 	private double total;
+	
+	@OneToOne
+	private Pedido pedido;
+
+	@OneToOne
+	private Producto producto;
 	
 	//Constructor vacio
 	public DetallePedido() {
@@ -61,6 +77,22 @@ public class DetallePedido {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+	
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
 	@Override
